@@ -33,7 +33,71 @@ I built this project while learning Python, using it to practice real-world prog
 * **JSON**
 * Python `dataclasses` and `sqlite3`
 
-No external Python packages are required.
+## How to Run
+
+### Requirements
+
+* Python 3.10 or newer
+* A modern web browser
+
+### Run the Web App
+
+Open a terminal in the project folder and run:
+
+```powershell
+python web_app.py
+```
+
+On Windows, if `python` is not available:
+
+```powershell
+py web_app.py
+```
+
+Then open the following address in your browser:
+
+```text
+http://127.0.0.1:8000/
+```
+
+Keep the terminal running while using the application.
+
+Press `Ctrl+C` in the terminal to stop the server.
+
+### Run the Command-Line Version
+
+The original command-line version is also included:
+
+```powershell
+python main.py
+```
+
+## Data Storage
+
+The active trip is stored locally in:
+
+```text
+trip_expenses.db
+```
+
+When a trip is completed, its information is archived under:
+
+```text
+trips/
+```
+
+Each completed trip contains a:
+
+```text
+trip-summary.json
+```
+
+The JSON summary includes the trip name, participants, expenses, category totals, balances, settlement suggestions, and timestamps.
+
+I chose JSON for the archived summaries because it keeps the data structured, readable, and easy to work with.
+
+The database and archived trip files are kept out of Git because they may contain private expense information.
+
 
 ### What I Learned
 
