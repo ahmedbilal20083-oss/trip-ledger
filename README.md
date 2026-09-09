@@ -1,100 +1,60 @@
 # Trip Ledger
 
-Trip Ledger is a local trip expense manager for shared travel and group spending. It lets a group create a trip, add expenses, track who paid, and automatically calculate balances and settlement suggestions.
+Trip Ledger is a simple trip expense manager I built with Python to help friends keep track of shared expenses during a trip.
 
-## Features
+The idea came from a common problem: when different people pay for food, fuel, tickets, groceries, or other expenses, it can become difficult to keep track of who paid what and who owes money at the end of the trip.
 
-- Create a trip with a name and a list of friends
-- Add, edit, and delete expenses
-- Track each expense with:
-  - description
-  - amount
-  - payer
-  - category
-  - currency (`PKR` or `USD`)
-  - split method
-- Supported categories:
-  - food
-  - groceries
-  - rent
-  - fuel
-  - tickets
-- View trip totals, per-person balances, and category totals
-- Automatically calculate who owes and who should receive money
-- Suggest settlement transfers between participants
-- Save the active trip in SQLite
-- End the trip and archive the completed summary as JSON
-- Preview and delete saved trips from the web app
-- Store completed trip data in `trip-summary.json` files instead of spreadsheet files
+With Trip Ledger, users can create a trip, add participants, record expenses, and automatically calculate each person's share and balance. The application also suggests settlement transfers to make it easier to figure out who should pay whom.
 
-## Requirements
+I built this project while learning Python, using it to practice real-world programming concepts such as **Python, SQLite, JSON, data structures, calculations, input validation, and web development**.
 
-- Python 3.10 or newer
-- Modern web browser
+### Features
 
-This project uses Python's standard library only. No extra package installation is required.
+* Create trips and add participants
+* Add, edit, and delete expenses
+* Track who paid for each expense
+* Support for PKR and USD
+* Expense categories such as food, groceries, rent, fuel, and tickets
+* Automatically calculate individual shares and balances
+* Show who owes money and who should receive money
+* Suggest simple settlement transfers
+* Store active trip data using SQLite
+* Archive completed trips as JSON
+* Preview and delete saved trips
+* Includes both a web interface and command-line version
 
-## Run the web app
+### Technologies
 
-From the Trip Ledger project folder, run:
+* **Python 3.10+**
+* **SQLite**
+* **HTML**
+* **CSS**
+* **JavaScript**
+* **JSON**
+* Python `dataclasses` and `sqlite3`
 
-```powershell
-python web_app.py
-```
+No external Python packages are required.
 
-If `python` is not available on Windows, use:
+### What I Learned
 
-```powershell
-py web_app.py
-```
+This project helped me understand how a small application is built from different parts working together. I practiced Python classes and functions, dataclasses, lists and dictionaries, database operations, JSON file handling, input validation, calculations, and connecting a Python backend with a browser-based interface.
 
-Then open this URL in your browser:
+The most interesting part for me was building the **balance and settlement logic**, where the application compares what each person paid with their actual share and calculates the required payments between participants.
 
-```text
-http://127.0.0.1:8000/
-```
+### Why I Built It
 
-Keep the terminal running while using the app. Press `Ctrl+C` to stop the server.
+I wanted to build something more practical than a basic Python exercise. Instead of following only tutorials, I wanted to take a real-world problem and turn it into a working application.
 
-## Optional CLI
+Trip Ledger is still a learning project, but it helped me improve my Python skills and gave me experience with databases, backend logic, frontend development, and organizing a complete project.
 
-The original command-line version is still available:
+### Future Improvements
 
-```powershell
-python main.py
-```
+* More flexible expense-splitting options
+* Better settlement optimization
+* Expense charts and analytics
+* Automated testing
+* User accounts
+* Cloud database support
+* Online deployment
 
-## Saved data
-
-The app creates local files in the project folder:
-
-- `trip_expenses.db`: working database for the current active trip
-- `trips/`: archived trip folders, each containing a `trip-summary.json` file
-
-These files are intentionally kept local because they may contain private trip information.
-
-Each saved trip summary contains:
-
-- trip name
-- participant names
-- full expense list
-- category totals
-- balances by person
-- settlement suggestions
-- created and updated timestamps
-
-The data is stored as JSON for easy reading and portability.
-
-## Project files
-
-- `main.py`: core trip logic, SQLite handling, calculations, and CLI behavior
-- `web_app.py`: local HTTP server, API routes, and archive management
-- `index.html`: web app layout
-- `index.js`: frontend logic and API calls
-- `style.css`: page styling and responsive layout
-
-## Notes
-
-- There is no Excel export in the current version.
-- Completed trips are saved as JSON summaries under the `trips/` directory.
-- Archived trip data can be reviewed from the app homepage and deleted if needed.
+This project is part of my ongoing journey of learning Python and software development.
