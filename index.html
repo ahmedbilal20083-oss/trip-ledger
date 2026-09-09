@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Trip Ledger</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<main class="shell">
+		<!-- Brand header shared by the homepage and active-trip dashboard. -->
+		<header class="topbar">
+			<div>
+				<p class="eyebrow">TRIP LEDGER</p>
+				<h1>Keep the group even.</h1>
+				<p class="intro">A clear view of every shared cost, who covered it, and what happens next.</p>
+			</div>
+			<div class="status"><span class="status-dot"></span> Saved locally</div>
+		</header>
+
+		<!-- Homepage: lists completed trips and starts a new trip. -->
+		<section id="setup-view" class="home-view" hidden>
+			<div class="home-heading">
+				<div><p class="eyebrow">YOUR TRIPS</p><h2>Every journey, kept.</h2></div>
+				<p>Finished trips are filed in your local <strong>trips</strong> folder as permanent records.</p>
+			</div>
+			<div id="archive-list" class="archive-list"></div>
+			<div class="new-trip-heading"><p class="eyebrow">NEW TRIP</p><h2>Start a fresh ledger</h2></div>
+			<form id="setup-form" class="setup-form">
+				<!-- <label for="trip-name">Friend names</label> -->
+				<input id="trip-name" name="name" placeholder= "enter trip name" required> 
+				<!-- <label for="friend-names">Trip name</label> -->
+				<input id="friend-names" name="friends" placeholder="enter friends names" required>
+				<button type="submit" class="button button-primary">Start the trip</button>
+			</form>                    
+		</section>            
+
+		<!-- Active trip dashboard: totals, forms, activity, balances, and settlement. -->
+		<div id="app-view" hidden>
+			<section class="metrics" aria-label="Trip totals">
+				<!-- High-level calculated trip metrics. -->
+				<article class="metric-card accent-card"><span>Total spent</span><strong id="total-spent">$0.00</strong><small>Across the whole trip</small></article>
+				<article class="metric-card"><span>Each person</span><strong id="each-share">$0.00</strong><small>Equal share per friend</small></article>
+				<article class="metric-card"><span>People</span><strong id="friend-count">0</strong><small>Sharing the costs</small></article>
+			</section>
+
+			<section class="content-grid">
+				<div class="main-column">
+					<!-- Expense entry form and chronological expense activity. -->
+					<article class="panel form-panel">
+						<div class="panel-heading"><div><p class="eyebrow">NEW ENTRY</p><h2>Add an expense</h2></div><span class="panel-mark">+</span></div>
+						<form id="expense-form">
+							<label for="description">What was it?</label>
+							<input id="description" name="description" placeholder="Beach house groceries" required>
+							<div class="form-row">
+								<div><label for="amount">Amount</label><div class="amount-input"><span>$</span><input id="amount" name="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required></div></div>
+													<div><label for="category">Category</label><select id="category" name="category"><option value="food">Food</option><option value="groceries">Groceries</option><option value="rent">Rent</option><option value="fuel">Fuel</option><option value="tickets">Tickets</option></select></div>
+							</div>
+							<label for="currency">Currency</label>
+							<select id="currency" name="currency"><option value="PKR">PKR - Pakistani Rupees</option><option value="USD">$ - Dollars</option></select>
+							<label for="paid-by">Paid by</label>
+							<select id="paid-by" name="paid_by" required></select>
+							<button type="submit" class="button button-primary">Save expense</button>
+							<p id="form-message" class="form-message" role="status"></p>
+						</form>
+					</article>
+
+					<article class="panel">
+						<div class="panel-heading"><div><p class="eyebrow">ACTIVITY</p><h2>Recent expenses</h2></div><span id="expense-count" class="count-label">0 entries</span></div>
+						<div id="expense-list" class="expense-list"></div>
+					</article>
+				</div>
+
+				<!-- Supporting breakdowns and the trip completion action. -->
+				<aside class="side-column">
+					<article class="panel">
+						<div class="panel-heading"><div><p class="eyebrow">BREAKDOWN</p><h2>By category</h2></div></div>
+						<div id="category-list" class="category-list"></div>
+					</article>
+					<article class="panel">
+						<div class="panel-heading"><div><p class="eyebrow">BALANCES</p><h2>Who stands where</h2></div></div>
+						<div id="people-list" class="people-list"></div>
+					</article>
+					<article class="panel settlement-panel">
+						<div class="panel-heading"><div><p class="eyebrow">NEXT MOVES</p><h2>Settle up</h2></div></div>
+						<div id="settlement-list" class="settlement-list"></div>
+					</article>
+					<button id="end-trip-button" class="button button-end" type="button">End trip &amp; save it</button>
+				</aside>
+			</section>
+		</div>
+		<p id="global-message" class="global-message" role="alert"></p>
+	</main>
+	<!-- Saved-trip preview dialog populated by index.js. -->
+	<div id="preview-modal" class="modal" hidden>
+		<div class="modal-backdrop" data-close-preview></div>
+		<section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="preview-title">
+			<button class="modal-close" type="button" data-close-preview aria-label="Close preview">×</button>
+			<p class="eyebrow">SAVED TRIP</p>
+			<h2 id="preview-title">Trip preview</h2>
+			<p id="preview-meta" class="preview-meta"></p>
+			<div id="preview-summary" class="preview-summary"></div>
+			<div id="preview-expenses" class="preview-expenses"></div>
+		</section>
+	</div>
+	<script src="index.js"></script>
+</body>
+</html>
